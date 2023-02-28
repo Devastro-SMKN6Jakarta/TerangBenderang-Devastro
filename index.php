@@ -1,4 +1,13 @@
-<?php require "template/data.php" ?>
+<?php require_once "connection.php" ?>
+
+<?php
+
+// Get Product
+$sql = "SELECT * FROM product";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <?php require_once "template/header.php" ?>
 
@@ -22,15 +31,15 @@
 
     <?php foreach ($product as $data) : ?>
 
-    <!-- item -->
-    <div class="product-item">
-      <img src="<?= $data['img'] ?>" alt="">
-      <div class="prod-item-text">
-        <small><?= $data['country'] ?></small>
-        <h4><?= $data['name'] ?></h4>
-        <p><?= $data['desc'] ?></p>
+      <!-- item -->
+      <div class="product-item">
+        <img src="<?= $data['image'] ?>" alt="">
+        <div class="prod-item-text">
+          <small><?= $data['country'] ?></small>
+          <h4><?= $data['name'] ?></h4>
+          <p><?= $data['description'] ?></p>
+        </div>
       </div>
-    </div>
 
     <?php endforeach ?>
 
